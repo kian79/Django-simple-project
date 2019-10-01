@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block body_block %}
+    <div class="container">
+        <div class="jumbotron">
+            <h1>HERE IS OUR AWSOME WEBSITE!
+                <br>
+                ENJOY IT!
+            </h1>
+        </div>
+    {% if user.is_authenticated %}
+        <h1>
+        thanks <span style="color: red"> {{ user.username }} </span>for logging in!
+        <br>
+        Now you can use our special services!
+        </h1>
+        {% else %}
+        <h1>
+        You can <a href="{% url 'login' %}">login</a> or <a href="{% url 'register' %}">register</a> to use our special services!
+        </h1>
+    {% endif %}
+    </div>
+{% endblock %}

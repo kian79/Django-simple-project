@@ -1,0 +1,46 @@
+{% load staticfiles %}
+<!doctype html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{% static  'css/bootstrap.css' %}">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<nav class="navbar navbar-expand-sm bg-light">
+
+    <!-- Links -->
+    <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+            <a class="navbar-brand" href="{% url 'index' %}">BRAND</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'admin:index' %}">ADMIN</a>
+        </li>
+        {% if not user.is_authenticated %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'register' %}">REGISTER</a>
+            </li>
+        {% endif %}
+        {% if user.is_authenticated %}
+            <li class="nav-item">
+                <a class="nav-link float-right text-right" href="{% url 'logout' %}">logout</a>
+            <li class="nav-item">
+                <p class="nav-tabs">{{ user.username }}</p>
+            </li>
+        {% else %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'login' %}">login</a>
+            </li>
+        {% endif %}
+    </ul>
+
+</nav>
+{% block body_block %}
+    <h1>main page!</h1>
+{% endblock %}
+</body>
+</html>
